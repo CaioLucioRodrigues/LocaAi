@@ -15,6 +15,8 @@ namespace LocaAi.Infra.Data.EntityConfig
                 e.Property(c => c.Nome).HasColumnName("Nome").HasMaxLength(150);
                 e.Property(c => c.Senha).HasColumnName("Senha").HasMaxLength(15);
                 e.Property(c => c.Email).HasColumnName("Email").HasMaxLength(150);
+                e.Property(c => c.DataCadastro).HasColumnName("DataCadastro");
+                e.Property(c => c.Pontuacao).HasColumnName("Pontuacao");
             });
         }
     }

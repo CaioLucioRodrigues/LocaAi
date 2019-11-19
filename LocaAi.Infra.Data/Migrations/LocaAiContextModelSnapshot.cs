@@ -34,6 +34,7 @@ namespace LocaAi.Infra.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("DataCadastro")
+                        .HasColumnName("DataCadastro")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
@@ -42,13 +43,18 @@ namespace LocaAi.Infra.Data.Migrations
                         .HasMaxLength(150);
 
                     b.Property<string>("Nome")
+                        .HasColumnName("Nome")
+                        .HasColumnType("nvarchar(150)")
+                        .HasMaxLength(150);
+
+                    b.Property<double>("Pontuacao")
+                        .HasColumnName("Pontuacao")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Senha")
                         .HasColumnName("Senha")
                         .HasColumnType("nvarchar(15)")
                         .HasMaxLength(15);
-
-                    b.Property<string>("Senha")
-                        .HasColumnName("Senha1")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

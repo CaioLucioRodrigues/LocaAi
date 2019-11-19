@@ -1,6 +1,7 @@
 ﻿using LocaAi.Domain.Entities;
 using LocaAi.Infra.Data.EntityConfig;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace LocaAi.Infra.Data.Context
 {
@@ -22,7 +23,7 @@ namespace LocaAi.Infra.Data.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-            builder.UseSqlServer(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=LocaAiDb;");
+            builder.UseSqlServer(@"Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=LocaAiDb;Integrated Security=SSPI;");
         }
 
         public DbSet<Usuario> Usuarios { get; set; }
