@@ -12,9 +12,9 @@ namespace LocaAi.Infra.Data.EntityConfig
                 e.ToTable("Usuarios");
                 e.HasKey(c => c.Id);
                 e.Property(c => c.Id).HasColumnName("Id").ValueGeneratedOnAdd();
-                e.Property(c => c.Nome).HasColumnName("Nome").HasMaxLength(150);
+                e.Property(c => c.Nome).HasColumnName("Nome").HasMaxLength(200);
                 e.Property(c => c.Senha).HasColumnName("Senha").HasMaxLength(15);
-                e.Property(c => c.Email).HasColumnName("Email").HasMaxLength(150);
+                e.Property(c => c.Email).HasColumnName("Email").HasMaxLength(200);
                 e.Property(c => c.DataCadastro).HasColumnName("DataCadastro");
                 e.Property(c => c.Pontuacao).HasColumnName("Pontuacao");
             });

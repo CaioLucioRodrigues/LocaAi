@@ -39,13 +39,13 @@ namespace LocaAi.Infra.Data.Migrations
 
                     b.Property<string>("Email")
                         .HasColumnName("Email")
-                        .HasColumnType("nvarchar(150)")
-                        .HasMaxLength(150);
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.Property<string>("Nome")
                         .HasColumnName("Nome")
-                        .HasColumnType("nvarchar(150)")
-                        .HasMaxLength(150);
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.Property<double>("Pontuacao")
                         .HasColumnName("Pontuacao")

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LocaAi.Infra.Data
 {
-    public class MigrationsMain
+    public class addMigrationsMain
     {
         static void Main(string[] args) { }
     }
