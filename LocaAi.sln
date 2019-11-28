@@ -20,9 +20,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocaAi.Domain", "LocaAi.Domain\LocaAi.Domain.csproj", "{726093B1-C760-47BC-86D9-2A9D2A4E48C1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile", "Mobile", "{C832240C-CABD-4152-941C-6A584B38C417}"
-	ProjectSection(SolutionItems) = preProject
-		LocaAi.Presentation.Mobile\LocaAi.Presentation.Mobile.iOS\LocaAi.Presentation.Mobile.iOS.csproj = LocaAi.Presentation.Mobile\LocaAi.Presentation.Mobile.iOS\LocaAi.Presentation.Mobile.iOS.csproj
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Site", "Site", "{18D0F8FD-7F9E-4C13-B452-1553D60AEC20}"
 EndProject
