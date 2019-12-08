@@ -1,4 +1,4 @@
-﻿using KissLog;
+﻿using LocaAi.Domain.Interfaces.Services.Logging;
 using LocaAi.Presentation.Site.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,9 +10,9 @@ namespace LocaAi.Presentation.Site.Controllers
     [Route("Home")]
     public class HomeController : Controller
     {
-        private readonly ILogger _logger;
+        private readonly ILogServiceBase _logger;
 
-        public HomeController(ILogger logger)
+        public HomeController(ILogServiceBase logger)
         {
             _logger = logger;
         }
@@ -21,22 +21,13 @@ namespace LocaAi.Presentation.Site.Controllers
         [Route("Index")]
         public IActionResult Index()
         {
-            _logger.Trace("O usuário acessou Home/Index");
+            _logger.LogInfo<HomeController>("O usuário acessou Home/Index");
             return View();
         }
 
         [Route("Privacidade")]
         public IActionResult Privacy()
         {
-            try
-            {
-                throw new Exception("ERRO CARALHO !!!");
-            }
-            catch (Exception e)
-            {
-                _logger.Error(e);
-                throw;
-            }
             return View();
         }
 

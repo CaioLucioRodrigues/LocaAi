@@ -4,9 +4,13 @@ namespace LocaAi.Domain.Interfaces.Services.Logging
 {
     public interface ILogComponent
     {
-        void Configure(object context);
+        void Configure(object[] context);
+
+        void LogCritical<T>(Exception error);
 
         void LogCritical<T>(Exception error, string message = "", params object[] args);
+
+        void LogError<T>(Exception error);
 
         void LogError<T>(Exception error, string message = "", params object[] args);
 

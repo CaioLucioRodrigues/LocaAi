@@ -1,7 +1,5 @@
-﻿using KissLog;
-using KissLog.Apis.v1.Listeners;
-using KissLog.AspNetCore;
-using LocaAi.Domain.Interfaces.Repositories;
+﻿using LocaAi.Domain.Interfaces.Repositories;
+using LocaAi.Domain.Interfaces.Services.Logging;
 using LocaAi.Infra.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using LocaAi.Services.Log;
 
 namespace LocaAi.Presentation.Site
 {
@@ -29,12 +28,12 @@ namespace LocaAi.Presentation.Site
             // TODO criar uma classe para a injeção de dependência
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped(context => Logger.Factory.Get());
+            services.AddSingleton<ILogServiceBase, LogServiceBase>();
         }
 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogServiceBase log)
         {
             if (env.IsDevelopment())
             {
@@ -50,15 +49,9 @@ namespace LocaAi.Presentation.Site
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthorization();
-            
-            //TODO criar uma classe de configiração do log (LogConfig), incluir isso nos serviços dentro de uma Iterface 
-            app.UseKissLogMiddleware(options =>
-            {
-                options.Listeners.Add(new KissLogApiListener(new KissLog.Apis.v1.Auth.Application(
-                    Configuration["KissLog.OrganizationId"],
-                    Configuration["KissLog.ApplicationId"])
-                ));
-            });
+
+            ILogServiceBase logging = app.ApplicationServices.GetService<ILogServiceBase>();
+            logging.Configure(new object[] { app, Configuration });
 
             app.UseEndpoints(endpoints =>
             {
