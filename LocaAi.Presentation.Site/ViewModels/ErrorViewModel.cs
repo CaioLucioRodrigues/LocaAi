@@ -1,6 +1,4 @@
-using System;
-
-namespace LocaAi.Presentation.Site.Models
+namespace LocaAi.Presentation.Site.ViewModels
 {
     public class ErrorViewModel
     {

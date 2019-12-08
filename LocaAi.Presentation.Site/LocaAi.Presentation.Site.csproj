@@ -4,8 +4,20 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="KissLog.AspNetCore" Version="2.5.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
+  </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LocaAi.Domain\LocaAi.Domain.csproj" />
+    <ProjectReference Include="..\LocaAi.Infra.Data\LocaAi.Infra.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewComponents\" />
+    <Folder Include="Views\Shared\Components\" />
   </ItemGroup>
 
 </Project>
