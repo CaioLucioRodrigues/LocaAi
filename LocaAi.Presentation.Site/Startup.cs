@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using LocaAi.Services.Log;
+using LocaAi.Infra.Data.Context;
 
 namespace LocaAi.Presentation.Site
 {
@@ -23,14 +24,15 @@ namespace LocaAi.Presentation.Site
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddAutoMapper()
             services.AddControllersWithViews();
 
             // TODO criar uma classe para a injeção de dependência
+            services.AddScoped<LocaAiContext>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<ILogServiceBase, LogServiceBase>();
         }
-
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogServiceBase log)

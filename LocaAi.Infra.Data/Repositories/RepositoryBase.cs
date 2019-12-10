@@ -1,48 +1,68 @@
-﻿using LocaAi.Domain.Interfaces.Repositories;
+﻿using LocaAi.Domain.Entities;
+using LocaAi.Domain.Interfaces.Repositories;
 using LocaAi.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace LocaAi.Infra.Data.Repositories
 {
-    public class RepositoryBase<TEntity> : IDisposable, IRepositoryBase<TEntity> where TEntity : class
+    public abstract class RepositoryBase<TEntity> :IRepositoryBase<TEntity> where TEntity : LocaAiEntityBase, new()
     {
-        protected LocaAiContext Db = new LocaAiContext();
+        protected readonly LocaAiContext Db;
+        protected readonly DbSet<TEntity> DbSet;
 
-        public void Add(TEntity obj)
+        public RepositoryBase(LocaAiContext db)
         {
-            Db.Set<TEntity>().Add(obj);
-            Db.SaveChanges();
+            Db = db;
+            DbSet = db.Set<TEntity>();
         }
 
-        public TEntity GetById(int id)
+        public virtual async Task<TEntity> CarregarPorID(int id)
         {
-            return Db.Set<TEntity>().Find(id);
+            return await DbSet.FindAsync(id);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public virtual async Task<IEnumerable<TEntity>> CarregarTodos()
         {
-            return Db.Set<TEntity>().ToList();
+            return await DbSet.ToListAsync();
         }
 
-        public void Update(TEntity obj)
+        public async Task<IEnumerable<TEntity>> Buscar(Expression<Func<TEntity, bool>> predicate)
         {
-            Db.Entry(obj).State = EntityState.Modified;
-            Db.SaveChanges();
+            return await DbSet.Where(predicate).ToListAsync();
         }
 
-        public void Remove(TEntity obj)
+        public virtual async Task Adicionar(TEntity entity)
         {
-            Db.Set<TEntity>().Remove(obj);
-            Db.SaveChanges();
+            DbSet.Add(entity);
+            await SaveChanges();
         }
 
-        public void Dispose()
+        public virtual async Task Atualizar(TEntity entity)
         {
-            Db.Dispose();
-            //throw new NotImplementedException();
+            DbSet.Update(entity);
+            await SaveChanges();
+        }
+
+        public virtual async Task Remover(int id)
+        {
+            var entity = new TEntity() { Id = id };
+            DbSet.Remove(entity);
+            await SaveChanges();
+        }
+
+        public async Task<int> SaveChanges()
+        {
+            return await Db.SaveChangesAsync();
+        }
+
+        public virtual void Dispose()
+        {
+            Db?.Dispose();
         }
     }
 }

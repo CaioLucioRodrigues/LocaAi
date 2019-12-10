@@ -18,8 +18,19 @@ namespace LocaAi.Infra.Data.Context
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.UseIdentityColumns();
-            builder.HasDefaultSchema("LocaAiDb");
-            new UsuarioConfiguration(builder);
+
+            builder.Model.GetEntityTypes()
+                .SelectMany(e => e.GetProperties())
+                .Where(p => p.ClrType == typeof(string)).ToList()
+                .ForEach(p => p.SetColumnType("varchar(100)"));
+
+            builder.ApplyConfigurationsFromAssembly(typeof(LocaAiContext).Assembly);
+
+            builder.Model.GetEntityTypes()
+                .SelectMany(e => e.GetForeignKeys()).ToList()
+                .ForEach(e => e.DeleteBehavior = DeleteBehavior.ClientSetNull);
+            
+            base.OnModelCreating(builder);            
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)

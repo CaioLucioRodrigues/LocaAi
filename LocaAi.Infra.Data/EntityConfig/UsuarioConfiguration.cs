@@ -1,23 +1,21 @@
 ﻿using LocaAi.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace LocaAi.Infra.Data.EntityConfig
 {
-    public class UsuarioConfiguration
+    public class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
     {
-        public UsuarioConfiguration(ModelBuilder builder)
+        public void Configure(EntityTypeBuilder<Usuario> builder)
         {
-            builder.Entity<Usuario>(e =>
-            {
-                e.ToTable("Usuarios");
-                e.HasKey(c => c.Id);
-                e.Property(c => c.Id).HasColumnName("Id").ValueGeneratedOnAdd();
-                e.Property(c => c.Nome).HasColumnName("Nome").HasMaxLength(200);
-                e.Property(c => c.Senha).HasColumnName("Senha").HasMaxLength(15);
-                e.Property(c => c.Email).HasColumnName("Email").HasMaxLength(200);
-                e.Property(c => c.DataCadastro).HasColumnName("DataCadastro");
-                e.Property(c => c.Pontuacao).HasColumnName("Pontuacao");
-            });
+            builder.ToTable("Usuarios");
+            builder.HasKey(c => c.Id);
+            builder.Property(c => c.Id).HasColumnName("Id").ValueGeneratedOnAdd();
+            builder.Property(c => c.Nome).HasColumnType("varchar(200)").HasColumnName("Nome").HasMaxLength(200);
+            builder.Property(c => c.Senha).HasColumnType("varchar(15)").HasColumnName("Senha").HasMaxLength(15);
+            builder.Property(c => c.Email).HasColumnType("varchar(200)").HasColumnName("Email").HasMaxLength(200);
+            builder.Property(c => c.DataCadastro).HasColumnName("DataCadastro");
+            builder.Property(c => c.Pontuacao).HasColumnName("Pontuacao");
         }
     }
 }
