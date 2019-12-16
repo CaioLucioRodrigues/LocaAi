@@ -1,14 +1,13 @@
 ﻿using LocaAi.Domain.Interfaces.Services.Logging;
 using LocaAi.Presentation.Site.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Diagnostics;
 
 namespace LocaAi.Presentation.Site.Controllers
 {
     [Route("")]
     [Route("Home")]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogServiceBase _logger;
 

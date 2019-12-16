@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LocaAi.Presentation.Site.Controllers
 {
-    public class UsuariosController : Controller
+    public class UsuariosController : BaseController
     {
         private readonly IUsuarioRepository _usuarioRepository;
 
@@ -25,7 +25,7 @@ namespace LocaAi.Presentation.Site.Controllers
         {
             if (ModelState.IsValid)
             {
-                //_usuarioRepository.Add(usuario);
+                _usuarioRepository.Adicionar(usuario);
             }
 
             return View(usuario);

@@ -12,6 +12,13 @@ namespace LocaAi.Infra.Data.Repositories
     {
         public ProdutoRepository(LocaAiContext db) : base(db) { }
 
+        public async Task<Produto> BuscarPorProdutoECategoria(int produtoId)
+        {
+            return await Db.Produtos
+                .Include(c => c.Categoria)
+                .FirstOrDefaultAsync(p => p.Id == produtoId);
+        }
+
         public async Task<IEnumerable<Produto>> BuscarPorUsuarioId(int usuarioId)
         {
             return await Db.Produtos

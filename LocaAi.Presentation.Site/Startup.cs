@@ -21,8 +21,7 @@ namespace LocaAi.Presentation.Site
         }
 
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
+        
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(Startup));
@@ -31,11 +30,12 @@ namespace LocaAi.Presentation.Site
             // TODO criar uma classe para a injeção de dependência
             services.AddScoped<LocaAiContext>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+            services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<ILogServiceBase, LogServiceBase>();
         }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogServiceBase log)
         {
             if (env.IsDevelopment())
