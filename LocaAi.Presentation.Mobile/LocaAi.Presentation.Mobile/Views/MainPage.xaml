@@ -4,14 +4,14 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             Title="LocaAi.Mobile"
              x:Class="LocaAi.Presentation.Mobile.MainPage">
 
     <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!!!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-        
+        <Button Text="Itens Que Possuo"
+                VerticalOptions="EndAndExpand"
+                HorizontalOptions="Center"                
+                Clicked="BtnItensClick"/>
     </StackLayout>
 
 </ContentPage>

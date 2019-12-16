@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace LocaAi.Infra.Data.EntityConfig
 {
-    public class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
+    public class CategoriaConfiguration : IEntityTypeConfiguration<Categoria>
     {
-        public void Configure(EntityTypeBuilder<Usuario> builder)
+        public void Configure(EntityTypeBuilder<Categoria> builder)
         {
-            builder.ToTable("Usuarios");
+            builder.ToTable("Categorias");
 
             builder.HasKey(p => p.Id);
 
@@ -21,24 +21,16 @@ namespace LocaAi.Infra.Data.EntityConfig
                 .HasColumnName("Nome")
                 .HasMaxLength(200);
 
-            builder.Property(p => p.Senha)
-                .HasColumnType("varchar(15)")
-                .HasColumnName("Senha")
-                .HasMaxLength(15);
-
-            builder.Property(p => p.Email)
-                .HasColumnType("varchar(200)")
-                .HasColumnName("Email")
-                .HasMaxLength(200);
+            builder.Property(p => p.Descricao)
+                .HasColumnType("varchar(2000)")
+                .HasColumnName("Descricao")
+                .HasMaxLength(2000);
 
             builder.Property(p => p.DataCadastro)
                 .HasColumnName("DataCadastro");
 
-            builder.Property(p => p.Pontuacao)
-                .HasColumnName("Pontuacao");
-
             builder.HasMany(p => p.Produtos)
-                .WithOne(p => p.Usuario);
+                .WithOne(p => p.Categoria);
         }
     }
 }

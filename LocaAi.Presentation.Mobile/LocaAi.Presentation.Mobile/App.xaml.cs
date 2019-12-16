@@ -1,6 +1,5 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
+using LocaAi.Presentation.Mobile.Views;
 
 namespace LocaAi.Presentation.Mobile
 {
@@ -9,8 +8,7 @@ namespace LocaAi.Presentation.Mobile
         public App()
         {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()

@@ -55,10 +55,7 @@ namespace LocaAi.Infra.Data.Repositories
             await SaveChanges();
         }
 
-        public async Task<int> SaveChanges()
-        {
-            return await Db.SaveChangesAsync();
-        }
+        public async Task<int> SaveChanges() => await Db.SaveChangesAsync();
 
         public virtual void Dispose()
         {

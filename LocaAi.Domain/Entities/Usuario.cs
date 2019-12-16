@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace LocaAi.Domain.Entities
 {
@@ -8,5 +9,6 @@ namespace LocaAi.Domain.Entities
         public string Senha { get; set; }
         public string Email { get; set; }
         public double Pontuacao { get; set; }
-    }
+        public IEnumerable<Produto> Produtos { get; set; }
+}
 }

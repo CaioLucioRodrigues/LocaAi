@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using LocaAi.Presentation.Mobile.Views;
 
 namespace LocaAi.Presentation.Mobile
 {
@@ -16,6 +17,11 @@ namespace LocaAi.Presentation.Mobile
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        private void BtnItensClick(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new ItensPropriosPage());
         }
     }
 }

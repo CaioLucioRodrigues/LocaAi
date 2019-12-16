@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using LocaAi.Services.Log;
 using LocaAi.Infra.Data.Context;
+using AutoMapper;
 
 namespace LocaAi.Presentation.Site
 {
@@ -24,7 +25,7 @@ namespace LocaAi.Presentation.Site
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddAutoMapper()
+            services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
 
             // TODO criar uma classe para a injeção de dependência

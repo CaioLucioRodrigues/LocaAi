@@ -3,6 +3,8 @@ using LocaAi.Infra.Data.EntityConfig;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace LocaAi.Infra.Data.Context
 {
@@ -40,6 +42,18 @@ namespace LocaAi.Infra.Data.Context
 
         public override int SaveChanges()
         {
+            PreProcessData();
+            return base.SaveChanges();
+        }
+        
+        public async override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            PreProcessData();
+            return await base.SaveChangesAsync(cancellationToken);
+        }
+
+        private void PreProcessData()
+        {
             foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("DataCadastro") != null))
             {
                 if (entry.State == EntityState.Added)
@@ -52,9 +66,10 @@ namespace LocaAi.Infra.Data.Context
                     entry.Property("DataCadastro").IsModified = false;
                 }
             }
-            return base.SaveChanges();
         }
 
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Produto> Produtos { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
     }
 }

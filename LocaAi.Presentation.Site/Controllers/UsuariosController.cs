@@ -25,7 +25,7 @@ namespace LocaAi.Presentation.Site.Controllers
         {
             if (ModelState.IsValid)
             {
-                _usuarioRepository.Add(usuario);
+                //_usuarioRepository.Add(usuario);
             }
 
             return View(usuario);
