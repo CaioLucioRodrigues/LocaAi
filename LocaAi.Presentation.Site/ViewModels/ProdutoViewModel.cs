@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LocaAi.Presentation.Site.ViewModels
 {
-    public class ProtutoViewModel
+    public class ProdutoViewModel
     {
         [Key]
         public int Id { get; set; }

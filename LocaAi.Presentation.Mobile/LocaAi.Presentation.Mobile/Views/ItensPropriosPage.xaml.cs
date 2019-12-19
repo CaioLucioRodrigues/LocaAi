@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LocaAi.Presentation.Mobile.Models;
+using LocaAi.Presentation.Mobile.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +14,19 @@ namespace LocaAi.Presentation.Mobile.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ItensPropriosPage : ContentPage
     {
+        public ItensPropriosViewModel ViewModel { get; set; }
+
         public ItensPropriosPage()
         {
-            InitializeComponent();
+            InitializeComponent();            
+            ViewModel = new ItensPropriosViewModel();
+            BindingContext = ViewModel;
+        }
+
+        private void listViewItensProprios_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var produto = (Produto)e.Item;
+            Navigation.PushAsync(new DetalhesItemView(produto));
         }
     }
 }

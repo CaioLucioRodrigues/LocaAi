@@ -1,17 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:view="clr-namespace:LocaAi.Presentation.Mobile.Views"     
              mc:Ignorable="d"
              Title="LocaAi.Mobile"
              x:Class="LocaAi.Presentation.Mobile.MainPage">
 
-    <StackLayout>
-        <Button Text="Itens Que Possuo"
-                VerticalOptions="EndAndExpand"
-                HorizontalOptions="Center"                
-                Clicked="BtnItensClick"/>
-    </StackLayout>
+    <MasterDetailPage.Master>
+        <view:MasterView>            
+        </view:MasterView>
+        <!--<ContentPage Title="Master">
+            <Label Text="Essa é a página master"></Label>
+        </ContentPage>-->        
+    </MasterDetailPage.Master>
 
-</ContentPage>
+    <MasterDetailPage.Detail>
+        <NavigationPage>
+            <x:Arguments>
+                <view:ItensPropriosPage></view:ItensPropriosPage>
+            </x:Arguments>
+        </NavigationPage>
+    </MasterDetailPage.Detail>
+
+
+</MasterDetailPage>
+
+
+
+
