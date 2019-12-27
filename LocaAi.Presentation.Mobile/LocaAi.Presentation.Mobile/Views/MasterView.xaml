@@ -7,9 +7,14 @@
              Title="Menu"
              x:Class="LocaAi.Presentation.Mobile.Views.MasterView">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-            <Label Text="Produto X"/>
-            <Label Text="Descrição X"/>                
-        </StackLayout>
-    </ContentPage.Content>
+        <Frame OutlineColor="Silver"
+               VerticalOptions="StartAndExpand"
+               Margin="15">  
+            <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
+                <Label Text="Usuário X"/>
+                <BoxView Color="Gray" HeightRequest="1" HorizontalOptions="Fill"></BoxView>
+                <Button Text="Teste" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>        
 </ContentPage>

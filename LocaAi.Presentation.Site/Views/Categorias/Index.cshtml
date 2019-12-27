@@ -1,16 +1,16 @@
 ﻿@model IEnumerable<LocaAi.Presentation.Site.ViewModels.CategoriaViewModel>
 
 @{
-    ViewData["Title"] = "Categorias";
+    ViewData["Title"] = "Lista de Categorias";
 }
 
-<h1>Categorias</h1>
+<h1>@ViewData["Title"]</h1>
 
 <p>
-    <a asp-action="Create">Novo</a>
+    <a class="btn btn-info" asp-action="Create">Adicionar</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table table-hover">
+    <thead class="thead-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Nome)
@@ -36,10 +36,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Ativo)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
+            <td class="text-right">
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><span class="fa fa-search"></span></a>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><span class="fa fa-pen-alt"></span></a>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><span class="fa fa-trash"></span></a>
             </td>
         </tr>
 }
