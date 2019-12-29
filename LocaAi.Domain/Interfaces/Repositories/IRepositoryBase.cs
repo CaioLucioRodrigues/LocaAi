@@ -12,6 +12,7 @@ namespace LocaAi.Domain.Interfaces.Repositories
         Task<TEntity> CarregarPorID(int id);
         Task<IEnumerable<TEntity>> CarregarTodos();
         Task Atualizar(TEntity entity);
+        Task AdicionarOuAtualizar(TEntity entity);
         Task Remover(int id);
         Task<IEnumerable<TEntity>> Buscar(Expression<Func<TEntity, bool>> predicate);
         Task<int> SaveChanges();

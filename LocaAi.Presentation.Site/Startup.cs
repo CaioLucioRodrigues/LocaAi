@@ -32,6 +32,9 @@ namespace LocaAi.Presentation.Site
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<ICaracteristicaRepository, CaracteristicaRepository>();
+            services.AddScoped<ICaracteristicaOpcaoRepository, CaracteristicaOpcaoRepository>();
+            services.AddScoped<ICaracteristicaPorCategoriaRepository, CaracteristicaPorCategoriaRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<ILogServiceBase, LogServiceBase>();
         }

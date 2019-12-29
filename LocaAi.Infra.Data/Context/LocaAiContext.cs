@@ -70,6 +70,9 @@ namespace LocaAi.Infra.Data.Context
 
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Produto> Produtos { get; set; }
-        public DbSet<Categoria> Categorias { get; set; }        
+        public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Caracteristica> Caracteristicas { get; set; }
+        public DbSet<CaracteristicaOpcao> CaracteristicaOpcoes { get; set; }
+        public DbSet<CaracteristicaPorCategoria> CaracteristicasPorCategorias { get; set; }
     }
 }

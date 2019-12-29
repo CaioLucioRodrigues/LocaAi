@@ -48,6 +48,14 @@ namespace LocaAi.Infra.Data.Repositories
             await SaveChanges();
         }
 
+        public virtual async Task AdicionarOuAtualizar(TEntity entity)
+        {
+            if (entity?.Id == 0)
+                await Adicionar(entity);
+            else
+                await Atualizar(entity);
+        }
+
         public virtual async Task Remover(int id)
         {
             var entity = await CarregarPorID(id);

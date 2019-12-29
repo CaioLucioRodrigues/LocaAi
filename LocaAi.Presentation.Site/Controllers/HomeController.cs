@@ -1,7 +1,13 @@
-﻿using LocaAi.Domain.Interfaces.Services.Logging;
+﻿using LocaAi.Domain.Entities;
+using LocaAi.Domain.Interfaces.Services.Logging;
+using LocaAi.Infra.Data.Context;
+using LocaAi.Infra.Data.Repositories;
 using LocaAi.Presentation.Site.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace LocaAi.Presentation.Site.Controllers
 {
@@ -35,6 +41,12 @@ namespace LocaAi.Presentation.Site.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [Route("Teste")]
+        public async Task<IActionResult> Teste()
+        {
+            return Ok();
         }
     }
 }
