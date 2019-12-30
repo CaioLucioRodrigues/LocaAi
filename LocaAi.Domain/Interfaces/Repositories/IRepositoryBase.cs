@@ -10,11 +10,12 @@ namespace LocaAi.Domain.Interfaces.Repositories
     {
         Task Adicionar(TEntity entity);
         Task<TEntity> CarregarPorID(int id);
-        Task<IEnumerable<TEntity>> CarregarTodos();
+        Task<IList<TEntity>> CarregarTodos();
+        Task<IList<TEntity>> CarregarTodosAtivos();
         Task Atualizar(TEntity entity);
         Task AdicionarOuAtualizar(TEntity entity);
         Task Remover(int id);
-        Task<IEnumerable<TEntity>> Buscar(Expression<Func<TEntity, bool>> predicate);
+        Task<IList<TEntity>> Buscar(Expression<Func<TEntity, bool>> predicate);
         Task<int> SaveChanges();
     }
 }

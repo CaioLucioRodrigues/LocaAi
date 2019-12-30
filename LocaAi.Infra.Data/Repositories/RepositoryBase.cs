@@ -26,12 +26,18 @@ namespace LocaAi.Infra.Data.Repositories
             return await DbSet.FindAsync(id);
         }
 
-        public virtual async Task<IEnumerable<TEntity>> CarregarTodos()
+        public virtual async Task<IList<TEntity>> CarregarTodos()
         {
             return await DbSet.ToListAsync();
         }
 
-        public async Task<IEnumerable<TEntity>> Buscar(Expression<Func<TEntity, bool>> predicate)
+        public async Task<IList<TEntity>> CarregarTodosAtivos()
+        {
+            return await Buscar(e => e.Ativo);
+            
+        }
+
+        public async Task<IList<TEntity>> Buscar(Expression<Func<TEntity, bool>> predicate)
         {
             return await DbSet.Where(predicate).ToListAsync();
         }

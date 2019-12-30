@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using LocaAi.Services.Log;
 using LocaAi.Infra.Data.Context;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace LocaAi.Presentation.Site
 {
@@ -28,7 +29,9 @@ namespace LocaAi.Presentation.Site
             services.AddControllersWithViews();
 
             // TODO criar uma classe para a injeção de dependência
-            services.AddScoped<LocaAiContext>();
+            services.AddDbContext<LocaAiContext>(options => {
+                options.UseSqlServer(Configuration.GetConnectionString("LocaAiDb"));
+            });            
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();

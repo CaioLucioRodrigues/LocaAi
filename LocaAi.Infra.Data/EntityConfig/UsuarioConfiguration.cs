@@ -14,9 +14,11 @@ namespace LocaAi.Infra.Data.EntityConfig
 
             builder.Property(p => p.Id)
                 .HasColumnName("Id")
+                .IsRequired()
                 .ValueGeneratedOnAdd();
 
             builder.Property(p => p.Nome)
+                .IsRequired()
                 .HasColumnType("varchar(200)")
                 .HasColumnName("Nome")
                 .HasMaxLength(200);

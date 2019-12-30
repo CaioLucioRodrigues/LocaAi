@@ -37,7 +37,8 @@ namespace LocaAi.Infra.Data.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-            builder.UseSqlServer(@"Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=LocaAiDb;Integrated Security=SSPI;");
+            //ConnectionString usada para o Migrations (Code First)
+            //builder.UseSqlServer(@"Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=LocaAiDbTest;Integrated Security=SSPI;");
         }
 
         public override int SaveChanges()
@@ -64,6 +65,14 @@ namespace LocaAi.Infra.Data.Context
                 if (entry.State == EntityState.Modified)
                 {
                     entry.Property("DataCadastro").IsModified = false;
+                }
+            }
+
+            foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("Ativo") != null))
+            {
+                if (entry.State == EntityState.Added)
+                {
+                    entry.Property("Ativo").CurrentValue = true;
                 }
             }
         }

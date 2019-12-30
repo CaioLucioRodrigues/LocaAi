@@ -12,7 +12,7 @@ namespace LocaAi.Infra.Data.Repositories
     {
         public UsuarioRepository(LocaAiContext db) : base(db)  { }
 
-        public async Task<IEnumerable<Usuario>> BuscarPorNome(string nome)
+        public async Task<IList<Usuario>> BuscarPorNome(string nome)
         {
             return await Db.Usuarios
                 .Where(u => u.Nome == nome)

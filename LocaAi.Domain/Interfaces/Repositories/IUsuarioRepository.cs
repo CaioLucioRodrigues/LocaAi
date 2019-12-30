@@ -6,6 +6,6 @@ namespace LocaAi.Domain.Interfaces.Repositories
 {
     public interface IUsuarioRepository : IRepositoryBase<Usuario>
     {
-        Task<IEnumerable<Usuario>> BuscarPorNome(string nome);
+        Task<IList<Usuario>> BuscarPorNome(string nome);
     }
 }
