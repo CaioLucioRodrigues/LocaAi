@@ -1,10 +1,10 @@
 ﻿@model LocaAi.Presentation.Site.ViewModels.CategoriaViewModel
 
 @{
-    ViewData["Title"] = "Editar";
+    ViewData["Title"] = "Editar Categoria";
 }
 
-<h1>Editar Categoria</h1>
+<h1>@ViewData["Title"]</h1>
 
 <hr />
 <div class="row">
@@ -28,14 +28,11 @@
                 <span asp-validation-for="Descricao" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Atualizar" class="btn btn-primary" />
+                <a class="btn btn-info" asp-action="Index">Voltar</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Voltar</a>
 </div>
 
 @section Scripts {

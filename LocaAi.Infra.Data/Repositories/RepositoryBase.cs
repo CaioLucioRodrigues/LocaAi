@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LocaAi.Infra.Data.Repositories
 {
-    public abstract class RepositoryBase<TEntity> :IRepositoryBase<TEntity> where TEntity : LocaAiEntityBase, new()
+    public abstract class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : LocaAiEntityBase, new()
     {
         protected readonly LocaAiContext Db;
         protected readonly DbSet<TEntity> DbSet;
@@ -26,7 +26,7 @@ namespace LocaAi.Infra.Data.Repositories
             return await DbSet.FindAsync(id);
         }
 
-        public virtual async Task<IList<TEntity>> CarregarTodos()
+        public virtual async Task<IEnumerable<TEntity>> CarregarTodos()
         {
             return await DbSet.ToListAsync();
         }
@@ -34,7 +34,7 @@ namespace LocaAi.Infra.Data.Repositories
         public async Task<IList<TEntity>> CarregarTodosAtivos()
         {
             return await Buscar(e => e.Ativo);
-            
+
         }
 
         public async Task<IList<TEntity>> Buscar(Expression<Func<TEntity, bool>> predicate)

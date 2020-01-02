@@ -1,10 +1,10 @@
 ﻿@model LocaAi.Presentation.Site.ViewModels.CategoriaViewModel
 
 @{
-    ViewData["Title"] = "Detalhes";
+    ViewData["Title"] = "Detalhes da Categoria";
 }
 
-<h1>Detalhes</h1>
+<h1>@ViewData["Title"]</h1>
 
 <div>    
     <hr />
@@ -30,6 +30,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Voltar</a>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Editar</a>    
+    <a class="btn btn-info" asp-action="Index">Voltar</a>
 </div>

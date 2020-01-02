@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LocaAi.Presentation.Mobile.Models
+﻿namespace LocaAi.Presentation.Mobile.Models
 {
     public class Produto
     {

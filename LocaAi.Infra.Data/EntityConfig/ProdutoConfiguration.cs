@@ -9,7 +9,7 @@ namespace LocaAi.Infra.Data.EntityConfig
         public void Configure(EntityTypeBuilder<Produto> builder)
         {
             builder.ToTable("Produtos");
-            
+
             builder.HasKey(p => p.Id);
 
             builder.Property(p => p.Id)

@@ -12,8 +12,8 @@ namespace LocaAi.Domain.Entities
 
         public string Nome { get; set; }
 
-        public IList<CaracteristicaOpcao> Opcoes { get; set; }
+        public List<CaracteristicaOpcao> Opcoes { get; set; }
 
-        public IList<CaracteristicaPorCategoria> CaracteristicasPorCategorias { get; set; }
+        public List<CaracteristicaPorCategoria> CaracteristicasPorCategorias { get; set; }
     }
 }

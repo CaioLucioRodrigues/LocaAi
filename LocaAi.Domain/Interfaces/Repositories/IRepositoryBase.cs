@@ -10,7 +10,7 @@ namespace LocaAi.Domain.Interfaces.Repositories
     {
         Task Adicionar(TEntity entity);
         Task<TEntity> CarregarPorID(int id);
-        Task<IList<TEntity>> CarregarTodos();
+        Task<IEnumerable<TEntity>> CarregarTodos();
         Task<IList<TEntity>> CarregarTodosAtivos();
         Task Atualizar(TEntity entity);
         Task AdicionarOuAtualizar(TEntity entity);

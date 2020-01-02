@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using LocaAi.Presentation.Mobile.Views;
+using System;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
-using LocaAi.Presentation.Mobile.Views;
 
 namespace LocaAi.Presentation.Mobile
 {
@@ -16,7 +12,7 @@ namespace LocaAi.Presentation.Mobile
     {
         public MainPage()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         private void BtnItensClick(object sender, EventArgs e)

@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using LocaAi.Presentation.Site.ViewModels;
-using LocaAi.Domain.Interfaces.Repositories;
-using AutoMapper;
+﻿using AutoMapper;
 using LocaAi.Domain.Entities;
+using LocaAi.Domain.Interfaces.Repositories;
+using LocaAi.Presentation.Site.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace LocaAi.Presentation.Site.Controllers
 {
@@ -19,17 +19,17 @@ namespace LocaAi.Presentation.Site.Controllers
             _categoriaRepository = categoriaRepository;
             _mapper = mapper;
         }
-        
+
         public async Task<IActionResult> Index()
-        {
+        {   
             return View(_mapper.Map<IEnumerable<CategoriaViewModel>>(await _categoriaRepository.CarregarTodos()));
         }
-        
+
         public async Task<IActionResult> Details(int id)
         {
             var categoriaViewModel = await ObterCategoria(id);
-            
-            if (categoriaViewModel == null)            
+
+            if (categoriaViewModel == null)
                 return NotFound();
 
             return View(categoriaViewModel);
@@ -39,26 +39,27 @@ namespace LocaAi.Presentation.Site.Controllers
         {
             return View();
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CategoriaViewModel categoriaViewModel)
         {
-            if (!ModelState.IsValid) 
+            if (!ModelState.IsValid)
                 return View(categoriaViewModel);
 
-            var fornecedor = _mapper.Map<Categoria>(categoriaViewModel);
-            await _categoriaRepository.Adicionar(fornecedor);
-            
+            var categoria = _mapper.Map<Categoria>(categoriaViewModel);
+            await _categoriaRepository.Adicionar(categoria);
+
             return RedirectToAction("Index");
         }
-        
+
         public async Task<IActionResult> Edit(int id)
         {
             var categoriaViewModel = await ObterCategoria(id);
 
-            if (categoriaViewModel == null)            
-                return NotFound();            
+            if (categoriaViewModel == null)
+                return NotFound();
+
             return View(categoriaViewModel);
         }
 
@@ -66,14 +67,14 @@ namespace LocaAi.Presentation.Site.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, CategoriaViewModel categoriaViewModel)
         {
-            if (id != categoriaViewModel.Id)            
-                return NotFound();            
+            if (id != categoriaViewModel.Id)
+                return NotFound();
 
-            if (ModelState.IsValid)
-                return View(categoriaViewModel);            
+            if (!ModelState.IsValid)
+                return View(categoriaViewModel);
 
-            var fornecedor = _mapper.Map<Categoria>(categoriaViewModel);
-            await _categoriaRepository.Adicionar(fornecedor);
+            var categoria = _mapper.Map<Categoria>(categoriaViewModel);
+            await _categoriaRepository.Atualizar(categoria);
 
             return RedirectToAction("Index");
         }
@@ -81,9 +82,9 @@ namespace LocaAi.Presentation.Site.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var categoriaViewModel = await ObterCategoria(id);
-            
-            if (categoriaViewModel == null)            
-                return NotFound();            
+
+            if (categoriaViewModel == null)
+                return NotFound();
 
             return View(categoriaViewModel);
         }
@@ -98,7 +99,7 @@ namespace LocaAi.Presentation.Site.Controllers
                 return NotFound();
 
             await _categoriaRepository.Remover(id);
-            
+
             return RedirectToAction(nameof(Index));
         }
 

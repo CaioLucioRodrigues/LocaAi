@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LocaAi.Infra.Data
+﻿namespace LocaAi.Infra.Data
 {
     public class addMigrationsMain
     {

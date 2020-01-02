@@ -1,9 +1,9 @@
-﻿using System;
+﻿using LocaAi.Domain.Interfaces.Services.Logging;
+using log4net;
+using System;
 using System.IO;
 using System.Reflection;
 using System.Xml;
-using LocaAi.Domain.Interfaces.Services.Logging;
-using log4net;
 
 namespace LocaAi.Services.Log.Components
 {

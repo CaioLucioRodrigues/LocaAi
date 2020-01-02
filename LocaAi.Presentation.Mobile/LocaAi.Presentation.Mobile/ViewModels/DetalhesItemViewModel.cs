@@ -1,7 +1,4 @@
 ﻿using LocaAi.Presentation.Mobile.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LocaAi.Presentation.Mobile.ViewModels
 {

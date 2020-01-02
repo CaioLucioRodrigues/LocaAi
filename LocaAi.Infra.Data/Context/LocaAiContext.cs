@@ -1,5 +1,4 @@
 ﻿using LocaAi.Domain.Entities;
-using LocaAi.Infra.Data.EntityConfig;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -10,7 +9,7 @@ namespace LocaAi.Infra.Data.Context
 {
     public class LocaAiContext : DbContext
     {
-        public LocaAiContext() 
+        public LocaAiContext()
         { }
 
         public LocaAiContext(DbContextOptions options)
@@ -31,14 +30,14 @@ namespace LocaAi.Infra.Data.Context
             builder.Model.GetEntityTypes()
                 .SelectMany(e => e.GetForeignKeys()).ToList()
                 .ForEach(e => e.DeleteBehavior = DeleteBehavior.ClientSetNull);
-            
-            base.OnModelCreating(builder);            
+
+            base.OnModelCreating(builder);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
             //ConnectionString usada para o Migrations (Code First)
-            //builder.UseSqlServer(@"Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=LocaAiDbTest;Integrated Security=SSPI;");
+            builder.UseSqlServer(@"Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=LocaAiDbTest;Integrated Security=SSPI;");
         }
 
         public override int SaveChanges()
@@ -46,7 +45,7 @@ namespace LocaAi.Infra.Data.Context
             PreProcessData();
             return base.SaveChanges();
         }
-        
+
         public async override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             PreProcessData();

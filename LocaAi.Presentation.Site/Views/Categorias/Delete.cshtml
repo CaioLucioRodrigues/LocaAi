@@ -1,7 +1,7 @@
 ﻿@model LocaAi.Presentation.Site.ViewModels.CategoriaViewModel
 
 @{
-    ViewData["Title"] = "Excluir";
+    ViewData["Title"] = "Excluir Categoria";
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -32,7 +32,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Excluir" class="btn btn-danger" /> |
+        <input type="submit" value="Excluir" class="btn btn-danger" />
         <a class="btn btn-info" asp-action="Index">Voltar</a>
     </form>
 </div>

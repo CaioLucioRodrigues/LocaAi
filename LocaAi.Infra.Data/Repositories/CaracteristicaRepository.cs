@@ -13,7 +13,7 @@ namespace LocaAi.Infra.Data.Repositories
         private readonly ICaracteristicaOpcaoRepository _caracteristicaOpcaoRepository;
 
         public CaracteristicaRepository(LocaAiContext db,
-                                        ICaracteristicaOpcaoRepository caracteristicaOpcaoRepository) : base(db) 
+                                        ICaracteristicaOpcaoRepository caracteristicaOpcaoRepository) : base(db)
         {
             _caracteristicaOpcaoRepository = caracteristicaOpcaoRepository;
         }

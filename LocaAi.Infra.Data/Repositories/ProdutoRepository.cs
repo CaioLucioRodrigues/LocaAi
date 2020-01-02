@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LocaAi.Domain.Entities;
+﻿using LocaAi.Domain.Entities;
 using LocaAi.Domain.Interfaces.Repositories;
 using LocaAi.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace LocaAi.Infra.Data.Repositories
 {

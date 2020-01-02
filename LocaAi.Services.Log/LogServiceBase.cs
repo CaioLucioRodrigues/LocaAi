@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using LocaAi.Domain.Interfaces.Services.Logging;
+﻿using LocaAi.Domain.Interfaces.Services.Logging;
 using LocaAi.Services.Log.Components;
+using System;
+using System.Collections.Generic;
 
 namespace LocaAi.Services.Log
 {

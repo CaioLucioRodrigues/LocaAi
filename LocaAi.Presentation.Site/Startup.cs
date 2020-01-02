@@ -1,16 +1,16 @@
-﻿using LocaAi.Domain.Interfaces.Repositories;
+﻿using AutoMapper;
+using LocaAi.Domain.Interfaces.Repositories;
 using LocaAi.Domain.Interfaces.Services.Logging;
+using LocaAi.Infra.Data.Context;
 using LocaAi.Infra.Data.Repositories;
+using LocaAi.Services.Log;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using LocaAi.Services.Log;
-using LocaAi.Infra.Data.Context;
-using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 
 namespace LocaAi.Presentation.Site
 {
@@ -22,16 +22,17 @@ namespace LocaAi.Presentation.Site
         }
 
         public IConfiguration Configuration { get; }
-        
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
+            
+            services.AddDbContext<LocaAiContext>(options => {
+                options.UseSqlServer(Configuration.GetConnectionString("LocaAiDb"), options => options.MaxBatchSize(10));
+            });
 
             // TODO criar uma classe para a injeção de dependência
-            services.AddDbContext<LocaAiContext>(options => {
-                options.UseSqlServer(Configuration.GetConnectionString("LocaAiDb"));
-            });            
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
@@ -41,7 +42,7 @@ namespace LocaAi.Presentation.Site
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<ILogServiceBase, LogServiceBase>();
         }
-        
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogServiceBase log)
         {
             if (env.IsDevelopment())
@@ -50,7 +51,7 @@ namespace LocaAi.Presentation.Site
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");                
+                app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
 

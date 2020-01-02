@@ -10,6 +10,8 @@ namespace LocaAi.Presentation.Site.AutoMapper
         {
             CreateMap<Usuario, UsuarioViewModel>().ReverseMap();
             CreateMap<Categoria, CategoriaViewModel>().ReverseMap();
+            CreateMap<Caracteristica, CaracteristicaViewModel>().ReverseMap();
+            CreateMap<CaracteristicaOpcao, CaracteristicaOpcaoViewModel>().ReverseMap();
         }
     }
 }
